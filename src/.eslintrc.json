@@ -1,0 +1,3 @@
+{
+  "extends": "react-app" //integrate packages of vite with project
+}
