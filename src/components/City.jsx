@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import styles from "./City.module.css";
 
 const formatDate = (date) =>
@@ -11,6 +11,14 @@ const formatDate = (date) =>
 
 function City() {
   const { id } = useParams();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  // then store the lat and lng to variable because it is not directly accessible on searchParams
+  // the wanted query string from URL has to match the name in get("lat") - lat for lattitude
+  const lat = searchParams.get("lat");
+  // same for longitude param
+  const lng = searchParams.get("lng");
+
   // TEMP DATA
   const currentCity = {
     cityName: "Lisbon",
@@ -21,7 +29,14 @@ function City() {
 
   const { cityName, emoji, date, notes } = currentCity;
 
-  return <h1>City {id}</h1>;
+  return (
+    <>
+      <h1>City {id}</h1>{" "}
+      <p>
+        Position: {lat}, {lng}
+      </p>
+    </>
+  );
 
   // return (
   //   <div className={styles.city}>

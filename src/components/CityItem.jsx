@@ -12,10 +12,16 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { cityName, emoji, date, id } = city;
+  const { cityName, emoji, date, id, position } = city;
+  console.log(position);
   return (
     <li>
-      <Link className={styles.cityItem} to={`${id}`}>
+      {/* ${id}?lat=${position.lat}  url param = id - query param ?paramName=${} */}
+      {/* add another query param with &paramaName=${} */}
+      <Link
+        className={styles.cityItem}
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+      >
         {" "}
         {/* link to city id - pass it to city page */}
         <span className={styles.emoji}>{emoji}</span>
