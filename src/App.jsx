@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Product from "./pages/Product";
 import Pricing from "./pages/pricing";
 import Homepage from "./pages/Homepage";
@@ -43,10 +43,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
           {/* nested routes */}
-          <Route
-            index
-            element={<CityList cities={cities} isLoading={isLoading} />}
-          />
+          {/* Navigate will immediately navigate to cities URL when clicking start tracking now. */}
+          {/* replace is will enable to go backwards to last page. it will replace the current element in history stack */}
+          <Route index element={<Navigate replace to="cities" />} />
           <Route
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
